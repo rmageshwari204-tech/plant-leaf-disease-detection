@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Plant Leaf Disease Detection</title>
+
+<style>
+
+body{
+    font-family: Arial;
+    background: linear-gradient(to right,#56ab2f,#a8e063);
+    text-align:center;
+}
+
+.container{
+    background:white;
+    padding:30px;
+    margin:50px auto;
+    width:450px;
+    border-radius:10px;
+    box-shadow:0px 0px 10px gray;
+}
+
+h1{
+    color:#2e7d32;
+}
+
+button{
+    background:#2e7d32;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    font-size:16px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1b5e20;
+}
+
+img{
+    margin-top:15px;
+    border-radius:10px;
+}
+
+.result{
+    margin-top:20px;
+    font-size:20px;
+    color:#1b5e20;
+    font-weight:bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🌿 Plant Leaf Disease Detection</h1>
+
+<form action="/predict" method="post" enctype="multipart/form-data">
+<input type="file" name="file" required>
+<br><br>
+<button type="submit">Upload & Predict</button>
+</form>
+
+{% if filename %}
+<h3>Uploaded Image</h3>
+<img src="{{ url_for('static', filename='uploads/' + filename) }}" width="250" height="250">
+{% endif %}
+
+{% if prediction %}
+<div class="result">
+Prediction: {{ prediction }}
+</div>
+{% endif %}
+
+</div>
+
+</body>
+</html>
